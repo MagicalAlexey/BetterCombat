@@ -24,7 +24,7 @@ public class WeaponAttributesFallback {
                 continue;
             }
             FallbackConfig.CompatibilitySpecifier[] specifiers = null;
-            if (hasAttributeModifier(item, EntityAttributes.GENERIC_ATTACK_DAMAGE)) {
+            if (hasAttributeModifier(item, EntityAttributes.ATTACK_DAMAGE)) {
                 specifiers = config.fallback_compatibility;
             } else if (item instanceof RangedWeaponItem) {
                 specifiers = config.ranged_weapons;

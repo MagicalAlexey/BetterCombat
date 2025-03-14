@@ -80,7 +80,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
                 || player.isSwimming()
                 || player.isUsingItem()
                 || player.isClimbing()
-                || player.isFallFlying()
+//                || player.isFallFlying()
                 || Platform.isCastingSpell(player)
                 || CrossbowItem.isCharged(mainHandStack)) {
             mainHandBodyPose.setPose(null, isLeftHanded);
