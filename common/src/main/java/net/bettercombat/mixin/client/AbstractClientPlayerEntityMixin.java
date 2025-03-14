@@ -56,7 +56,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
 
     @Inject(method = "<init>", at = @At("TAIL"))
     private void postInit(ClientWorld world, GameProfile profile, CallbackInfo ci) {
-        var stack = ((IAnimatedPlayer) this).getAnimationStack();
+        var stack = ((IAnimatedPlayer) this).playerAnimator$getAnimationStack();
         stack.addAnimLayer(1, offHandItemPose.base);
         stack.addAnimLayer(2, offHandBodyPose.base);
         stack.addAnimLayer(3, mainHandItemPose.base);
@@ -184,7 +184,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
             if (FirstPersonMode.isFirstPersonPass()) {
                 var pitch = player.getPitch();
                 pitch = (float) Math.toRadians(pitch);
-                switch (partName) {
+                switch (partName.getKey()) {
                     case "body" -> {
                         rotationX -= pitch;
                         if (pitch < 0) {
@@ -203,7 +203,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
             } else {
                 var pitch = player.getPitch();
                 pitch = (float) Math.toRadians(pitch);
-                switch (partName) {
+                switch (partName.getKey()) {
                     case "body" -> {
                         rotationX -= pitch * 0.75F;
                     }
@@ -237,7 +237,7 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
             float offsetZ = 0;
 
             if (!FirstPersonMode.isFirstPersonPass()) {
-                switch (partName) {
+                switch (partName.getKey()) {
                     case "rightArm", "leftArm" -> {
                         if (!mainHandItemPose.lastAnimationUsesBodyChannel && player.isInSneakingPose()) {
                             offsetY += 3;
@@ -261,8 +261,8 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
         switch (pose) {
             case STANDING -> {
             }
-            case FALL_FLYING -> {
-            }
+//            case FALL_FLYING -> {
+//            }
             case SLEEPING -> {
             }
             case SWIMMING -> {
